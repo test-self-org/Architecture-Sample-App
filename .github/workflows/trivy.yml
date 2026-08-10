@@ -1,0 +1,22 @@
+name: Trivy
+on:
+    push:
+        branches:
+        - main
+    pull_request:
+    schedule:
+        - cron: '0 0 1 * *'
+
+    workflow_dispatch:  # Allow manual triggering
+
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-24.04
+        steps:
+        - name: Run Trivy vulnerability scanner in fs mode
+          uses: aquasecurity/trivy-action@v0.36.0
+          with:
+            scan-type: 'fs'
+            scan-ref: '.'
+            trivy-config: trivy.yaml
