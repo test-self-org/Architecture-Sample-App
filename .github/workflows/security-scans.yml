@@ -13,6 +13,7 @@ jobs:
   security-scan-frontend:
     uses: test-self-org/.github/.github/workflows/security-scans.yml@main
     with:
+      name: frontend
       folder: ./architecture-project-frontend
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -20,6 +21,7 @@ jobs:
   security-scan-backend:
     uses: test-self-org/.github/.github/workflows/security-scans.yml@main
     with:
+      name: backend
       folder: ./architecture-project-backend
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
