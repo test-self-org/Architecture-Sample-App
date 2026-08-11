@@ -6,6 +6,9 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: write
+
 jobs:
   security-scan:
     uses: test-self-org/.github/.github/workflows/security-scans.yml@main
