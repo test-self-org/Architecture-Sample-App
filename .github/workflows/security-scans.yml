@@ -10,4 +10,4 @@ jobs:
   security-scan:
     uses: test-self-org/.github/.github/workflows/security-scans.yml@main
     secrets:
-      deploy-token: ${{ secrets.SONAR_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
