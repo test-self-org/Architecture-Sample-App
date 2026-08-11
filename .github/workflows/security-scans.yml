@@ -1,0 +1,11 @@
+name: Security Scans
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  security-scan:
+    uses: test-self-org/.github/.github/workflows/security-scans.yml@main
+    secrets:
+      deploy-token: ${{ secrets.SONAR_TOKEN }}
