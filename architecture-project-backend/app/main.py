@@ -16,7 +16,7 @@ from features.users.router import router as users_router
 
 configure_logging(settings.LOG_LEVEL)
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("__name__")
 
 database = Database()
 
