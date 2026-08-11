@@ -15,19 +15,19 @@ RUN apk upgrade --no-cache
 # Copy built assets
 COPY --from=build-env /app/dist /usr/share/nginx/html
 
-# Configure Nginx
-RUN rm -f /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# # Configure Nginx
+# RUN rm -f /etc/nginx/conf.d/default.conf
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Move PID file to /tmp so Nginx can write to it without root access
-RUN sed -i 's#pid.*#pid /tmp/nginx.pid;#' /etc/nginx/nginx.conf
+# # Move PID file to /tmp so Nginx can write to it without root access
+# RUN sed -i 's#pid.*#pid /tmp/nginx.pid;#' /etc/nginx/nginx.conf
 
-# Generate env-config.js at container startup from the runtime VITE_* env vars.
-# nginx's entrypoint runs every /docker-entrypoint.d/*.sh before starting nginx.
-COPY env.sh /docker-entrypoint.d/40-env-config.sh
-RUN chmod +x /docker-entrypoint.d/40-env-config.sh
-# The startup script rewrites env-config.js in place, so the served dir must be
-# writable by the non-root runtime user (USER 1001 below).
+# # Generate env-config.js at container startup from the runtime VITE_* env vars.
+# # nginx's entrypoint runs every /docker-entrypoint.d/*.sh before starting nginx.
+# COPY env.sh /docker-entrypoint.d/40-env-config.sh
+# RUN chmod +x /docker-entrypoint.d/40-env-config.sh
+# # The startup script rewrites env-config.js in place, so the served dir must be
+# # writable by the non-root runtime user (USER 1001 below).
 RUN chmod -R 777 /usr/share/nginx/html
 
 RUN mkdir -p /tmp
