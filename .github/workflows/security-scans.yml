@@ -6,8 +6,22 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: write
+
 jobs:
-  security-scan:
+  security-scan-frontend:
     uses: test-self-org/.github/.github/workflows/security-scans.yml@main
+    with:
+      name: frontend
+      folder: ./architecture-project-frontend
     secrets:
-      deploy-token: ${{ secrets.SONAR_TOKEN }}
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  security-scan-backend:
+    uses: test-self-org/.github/.github/workflows/security-scans.yml@main
+    with:
+      name: backend
+      folder: ./architecture-project-backend
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
