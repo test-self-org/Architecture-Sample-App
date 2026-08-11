@@ -12,5 +12,8 @@ permissions:
 jobs:
   security-scan:
     uses: test-self-org/.github/.github/workflows/security-scans.yml@main
+    with:
+      frontend-folder: ./architecture-project-frontend
+      backend-folder: ./architecture-project-backend
     secrets:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
